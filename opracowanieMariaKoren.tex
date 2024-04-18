@@ -1,0 +1,254 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{dsfont} 
+\usepackage[polish]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[top=1in, bottom=1.5in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{subfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\graphicspath{{Images/}}
+\usepackage{xcolor,colortbl}
+\usepackage{float}
+
+
+\newcommand \comment[1]{\textbf{\textcolor{red}{#1}}}
+
+%\usepackage{float}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{indentfirst}
+\usepackage{placeins}
+\usepackage{scalefnt}
+\usepackage{xcolor,listings}
+\usepackage{textcomp}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{framed}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{HTML}{C42043}
+\definecolor{backcolour}{HTML}{F2F2F2}
+\definecolor{bookColor}{cmyk}{0,0,0,0.90}  
+\color{bookColor}
+
+\lstset{upquote=true}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{codepurple},
+	numberstyle=\numberstyle,
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize\ttfamily,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=10pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+}
+\lstset{style=mystyle}
+
+\newcommand\numberstyle[1]{%
+	\footnotesize
+	\color{codegray}%
+	\ttfamily
+	\ifnum#1<10 0\fi#1 |%
+}
+
+\definecolor{shadecolor}{HTML}{F2F2F2}
+
+\newenvironment{sqltable}%
+{\snugshade\verbatim}%
+{\endverbatim\endsnugshade}
+
+% Margins
+\addtolength{\footskip}{0cm}
+\addtolength{\textwidth}{1.4cm}
+\addtolength{\oddsidemargin}{-.7cm}
+
+\addtolength{\textheight}{1.6cm}
+%\addtolength{\topmargin}{-2cm}
+
+% paragrafo
+\addtolength{\parskip}{.2cm}
+
+% Set up the header and footer
+\pagestyle{fancy}
+% \rhead{Programowanie w języku Golang: \hmwkAuthorName} % Top left header
+\lhead{\hmwkClass: \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{Maria Koren} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{} % Bottom right footer
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+    
+\newcommand{\hmwkTitle}{Silne i słabe liczby} 
+\newcommand{\hmwkDueDate}{\today} 
+\newcommand{\hmwkClass}{Programowanie w języku Golang}
+\newcommand{\hmwkAuthorName}{Maria Koren}
+
+% trabalho 
+\begin{document}
+% capa
+\begin{titlepage}
+    \vfill
+	\begin{center}
+	\hspace*{-1cm}
+	\vspace*{0.5cm}
+    \includegraphics[scale=0.55]{images/loga.png}\\
+	\textbf{Uniwersytet Gdański \\ [0.05cm]Wydział Matematyki, Fizyki i Informatyki \\ [0.05cm] Instytut Informatyki}
+
+	\vspace{0.6cm}
+	\vspace{4cm}
+	{\huge \textbf{\hmwkTitle}}\vspace{8mm}
+	
+	{\large \textbf{\hmwkAuthorName}}\\[3cm]
+	
+		\hspace{.45\textwidth} %posiciona a minipage
+	   \begin{minipage}{.5\textwidth}
+
+	  \end{minipage}
+	  \vfill
+	%\vspace{2cm}
+	
+	\textbf{Gdańsk}
+	
+	\textbf{\hmwkDueDate}
+	\end{center}
+	
+\end{titlepage}
+
+\newpage
+\setcounter{secnumdepth}{5}
+\tableofcontents
+\newpage
+
+\section{Opis zadania}
+
+Zadanie polegało na obliczaniu swojej silnej oraz słabej liczby, napisane w języku Golang.
+
+Silna liczba, to taka liczba, której silnia zawiera w sobie wszystkie wartości numeryczne kodów ASCII z mojego nicku. Moim nickiem, w ramach tego zadania, jest \textit{markor}.
+
+Słaba liczba, to argument, dla którego liczba wywołań ciągu Fibonacciego dla $30$, jest najbardziej zbliżona mojej silnej liczby.
+
+\newpage
+\section{Silna liczba}
+
+W celu obliczenia mojej silnej liczby najpierw mój nick przełożyłam na kody ASCII, wyszło $[109, 97, 114, 107, 111, 114]$, zatem zrobiłam wyrażenie regularne, rozpoznujące ciągi tekstowe w którym liczby z kodów ASCII mojego nicku idą po kolei lub są oddzielone innymi znakami. Następnie wyliczyłam silnie dla liczb i sprawdziłam czy ta liczba pasuje do wyrażenia regularnego. Jeżeli tak, dodałam je do tablicy.
+
+W wyniku otrzymałam tablice moich silnych liczb. Obserwacja: na przedziale od 1 do 1000, moje silne liczby to: $[696, 761, 902, 916, 943, 950, 953, 970, 985, 998]$, jest ich 10. Natomiast na przedziale od 1 do 2000 moich silnych liczb jest już 289. 
+
+Dla dalszej części zadania przyjęłam, że moja silna liczba, to najmniejsza z liczb, pasujących pod tą definicję. To oznacza, że moja silna liczba, to \textbf{696}.
+
+
+Silnia z 696 wyniosła:
+
+\noindent
+$10174613414092246586090739139771524508760152012260440036517635493940\\
+963749981443486385554130569598631775108771942233401507606579621908275\\
+305405155000158204755428271962028289890760734038096000626038533615033\\
+210469509053265482661885685221364599336802536639825906074969872257888\\
+938493249607801457399969869258001892733333348049639071565969056652866\\
+2019460015801299796\textbf{109}29581804732902824267062535804116286837627582441\\
+3233266392626384029640511141218843532717362711564188\textbf{97}450154462943919\\
+494842468215295307705874520838846003678524181492854996212909227838056\\
+646005437256889881094173433973820963843670995230757658435632482500419\\
+8948974752807534234905039031215\textbf{114}36363585920618258745796017648126375\\
+418273976496646985886204229571951254429801627557396115215346611005182\\
+941896824578426484816344809256485076461454269102921804976365768326980\\
+216957285515904500246372846695881305046240344746517452866958976603815\\
+822312833137591350119513113888159617992174370150513254456467878372617\\
+023538317587008480725951825752499150540739143087154830706677072531147\\
+86\textbf{107}0486422426299256694515362519232871561814285413314152191437023368\\
+141354652513385157324239454687251335949767673233367866988474275505900\\
+799925049781932060520895148293441735587918283422505903709479245027910\\
+2952084633\textbf{111}02668955069498514179745651975245802949110092706416259647\\
+347362828207672331832538001812837548238395853518251991323852541502007\\
+682771194325234778181\textbf{114}324907985221783508920135955001534555563137264\\
+084438070342862873595854429627246436384777019242901384724480000000000\\
+000000000000000000000000000000000000000000000000000000000000000000000\\
+000000000000000000000000000000000000000000000000000000000000000000000\\
+000000000000000000000000$
+
+\newpage
+\section{Słaba liczba}
+
+
+Żeby obliczyć słabą liczbę, trzeba najpierw obliczyć silną liczbę, którą obliczyłam w poprzednim punkcie. Dalej napisałam funkcję, która zwraca ile razy została wywołana funkcja ciągu Fibonacciego dla każdej liczby (funkcja \textit{fibonacciCounter}). Została wywołana funkcja dla liczby 30, więc otrzymałam ile razy została wywołana funkcja dla każdej liczby z przedziału od 0 do 30. Zatem Wyliczyłam różnicę między liczbą wywołań, a moją silną liczbą. Posortowałam te odległości i wzięłam najmniejszą. Najmniejsza odległość liczby wywołań, a mojej silnej liczby wyniosła $86$. Zatem znalezłam argument z którego ta różnica pochodzi. Moją słabą liczbą jest zatem \textbf{16}. Dla niej liczba wywołań to $610$
+
+\newpage
+\section{Ciekawostki}
+
+\subsection{Ciągi a złota liczba}
+Obliczono wartości ciągu Fibonacciego oraz liczby wywołań dla poszczególnych, mniejszych liczb. Zauważona ciekawostka: że sam ciąg Fibonacciego od kolejnych liczb oraz ciąg wywołań jest to ten samy ciąg. 
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|c}
+         1 & 1  \\
+         2 & 1 \\
+         3 & 2 \\
+         4 & 3\\
+         5 & 5 \\
+         6 & 8 \\
+         7& 13 \\
+         8& 21\\
+         9&34\\
+         10&55\\
+         11&89\\
+         12&144\\
+         13&233\\
+         14&377\\
+         15&610\\
+         16&987\\
+         17&1597\\
+         18&2584\\
+         19&4171\\
+         20&6765\\
+         21&10946\\
+         22&17711\\
+         23&28657\\
+         24&46368\\
+         25&75025\\
+         26&121393\\
+         27&196418\\
+         28&317811\\
+         29&514229\\
+         30&832040\\
+    \end{tabular}
+    \caption{Ciąg Fibonacci}
+    \label{tab:cf}
+\end{table}
+
+\newpage
+
+Ilość wywołań dla liczby 30:
+[ 1:832040 2:514229 3:317811 4:196418 5:121393 6:75025 7:46368 8:28657 9:17711 10:10946 11:6765 12:4181 13:2584 14:1597 15:987 16:610 17:377 18:233 19:144 20:89 21:55 22:34 23:21 24:13 25:8 26:5 27:3 28:2 29:1 30:1]
+
+Jak widać jest to dokładnie ten samy ciąg. Ponadno, zauważono, że każda kolejna liczba tego ciągu nie jest losowa. Każda kolejna liczba jest o \textbf{1.618} razy większa niż poprzednia, czyli większa o \textcolor{yellow!80!red} {\textit{ZŁOTĄ LICZBĘ} {\faGrinStars}}.
+
+\newpage
+\subsection{Duże liczby}
+
+Również zastanowiło mnie podejście do oblicznia swojej silnej liczby. Co, jeżeli przyjąć definicję silnej liczby, jako liczbę której silnia zawiera wszystkie litery przekształcone na kody ASCII jako podsłowo. Na ile duża będzie wtedy silna liczba?
+
+Niestety, odpowiedzi na to pytanie znaleźć mi nie udało się \textcolor{yellow!90!black}{\faFrown}. Obliczyłam silni do \\
+\textbf{30 000} i w tym przedziale nie znalazło się takiej silni, która by zawierała jako podsłowo \textit{10997114107111114}. 
+
+\end{document}
